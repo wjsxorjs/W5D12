@@ -116,7 +116,7 @@
 					<%			
 							} else {
 					%>
-							<li><a href="Controller?type=list&bname=bbs&cPage=<%=pvo.getNowPage()-pvo.getPagePerBlock()%>">&lt;</a></li>
+							<li><a href="Controller?type=list&bname=bbs&cPage=<%=pvo.getEndPage()-pvo.getPagePerBlock()%>">&lt;</a></li>
 					<%
 							}
 							for(int i=pvo.getStartPage(); i<=pvo.getEndPage(); i++ ){
@@ -127,14 +127,20 @@
 					<%				
 								} else {
 					%>
-									<li><a href="#"><%=i %></a></li>
+									<li><a href="Controller?type=list&bname=bbs&cPage=<%=i%>"><%=i %></a></li>
 					<%				
 								}
 							} // for문 끝
+							if(pvo.getEndPage() >= pvo.getTotalPage()){
 					%>
-							<li><a href="#">다음으로</a></li>
+							<li class="disable">&gt;</li>
 					<%
-					}
+							} else{
+					%>
+							<li><a href="Controller?type=list&bname=bbs&cPage=<%=pvo.getStartPage()+pvo.getPagePerBlock()%>">&gt;</a></li>
+					<%
+							}
+						}
 					%>
 						</ol>
               		</td>
@@ -172,11 +178,5 @@
 			</tbody>
 		</table>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-	<script>
-		$(function(){
-			
-		});
-	</script>
 </body>
 </html>
