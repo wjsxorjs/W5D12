@@ -27,6 +27,13 @@
 		
 	</select>
 
+	<!-- 해당 게시물의 전체게시물 수를 반환 -->
+	<select id="count" resultType="int" parameterType="String">
+		SELECT COUNT(*)
+		FROM bbs_t
+		WHERE status = 0 AND bname = #{bname}
+	</select>
+
 
 	<insert id="add" parameterType="Map">
 		INSERT INTO bbs_t(subject, writer, content, file_name,

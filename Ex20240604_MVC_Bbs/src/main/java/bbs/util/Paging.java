@@ -52,6 +52,16 @@ public class Paging {
 
 	public void setTotalRecord(int totalRecord) {
 		this.totalRecord = totalRecord;
+		
+		// 총 게시물의 수가 변경될 때 총 페이지 값도 변경
+//		totalPage = totalRecord / numPerPage;
+//		if((totalRecord%numPerPage) != 0) {
+//			totalPage++;
+//		}
+		totalPage =  (int) Math.ceil((double)totalRecord / numPerPage);
+		
+		
+		
 	}
 
 	public void setPagePerBlock(int pagePerBlock) {
