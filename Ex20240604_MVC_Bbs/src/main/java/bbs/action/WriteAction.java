@@ -32,7 +32,7 @@ public class WriteAction implements Action {
 			viewPath = "/jsp/"+bname+"/write.jsp";
 		} else if(enc_type.startsWith("multipart")) {
 			// 파일이 첨부된 상태에서 현재 객체가 불려진 경우
-			// 폼의 enc_type이 multipart....로 지정되었다면
+			// 폼의 enc_type이 multipart....로 지정되었다면 // enc_tyupe이 없다면 application
 			// 절대로 request.getParameter()로 값을 받지못한다
 			// 반드시 cos.jar라는 (외부)라이브러리에 있는 MultipartRequest를
 			// 이용해야한다.
@@ -68,9 +68,11 @@ public class WriteAction implements Action {
 			// 요청자의 IP
 			String ip = request.getRemoteAddr();
 			
-			BbsDAO.add(title, writer, content, fname, oname, ip, b_name);
+			int cnt = BbsDAO.add(title, writer, content, fname, oname, ip, b_name);
 			
-			viewPath = "Controller?type=list&bname="+b_name;
+			viewPath = "/jsp/"+b_name+"/add_success.jsp";
+			
+//			viewPath = "Controller?type=list&bname="+b_name;
 			
 			} catch(Exception e) {
 				e.printStackTrace();

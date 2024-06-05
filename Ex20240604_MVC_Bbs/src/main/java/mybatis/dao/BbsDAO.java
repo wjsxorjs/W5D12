@@ -46,7 +46,7 @@ public class BbsDAO {
 		return b_ar;
 	}
 	
-	public static void add(String title, String writer, String content, String fname, String oname, String ip, String b_name) {
+	public static int add(String title, String writer, String content, String fname, String oname, String ip, String b_name) {
 		
 		SqlSession ss = FactoryService.getFactory().openSession();
 		
@@ -70,7 +70,7 @@ public class BbsDAO {
 		
 		ss.close();
 		
-		return;
+		return chk;
 		
 	}
 	

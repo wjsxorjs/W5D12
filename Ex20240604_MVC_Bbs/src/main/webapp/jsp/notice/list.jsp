@@ -102,7 +102,7 @@
 			</thead>
 			<tfoot>
             	<tr>
-                	<td colspan="4">
+                	<td class="lastRow" colspan="4">
                     	<ol class="paging">
 					<%
 						// 페이징을 위해 request에 page라는이름으로 저장한 객체를 얻어낸다.
@@ -144,9 +144,9 @@
 					%>
 						</ol>
               		</td>
-					<td>
-					<input type="button" value="글쓰기"
-	onclick="javascript:location.href='Controller?type=write&bname=notice'"/>
+					<td class="lastRow">
+						<input type="button" value="글쓰기"
+		onclick="javascript:location.href='Controller?type=write&bname=notice'"/>
 					</td>
 				</tr>
 			</tfoot>
