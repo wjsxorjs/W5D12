@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>글쓰기(게시판)</title>
+<link rel="stylesheet" href="css/summernote-lite.css">
+<%-- 현재 브라우저는 자신의 위치를 root로 인식하므로 --%>
 <style type="text/css">
 	#bbs table {
 	    width:580px; 
@@ -80,7 +82,7 @@
 				<tr>
 					<th>내용:</th>
 					<td><textarea name="content" cols="50" 
-							rows="8"></textarea></td>
+							id="content" rows="8"></textarea></td>
 				</tr>
 				<tr>
 					<th>첨부파일:</th>
@@ -105,5 +107,12 @@
 		</table>
 	</form>
 	</div>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script src="js/summernote-lite.js"></script>
+	<script>
+		$(function(){
+			$("#content").summernote();
+		});
+	</script>
 </body>
 </html>
