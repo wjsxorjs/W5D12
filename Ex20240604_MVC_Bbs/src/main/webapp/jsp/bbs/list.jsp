@@ -1,3 +1,4 @@
+<%@page import="bbs.util.Paging"%>
 <%@page import="mybatis.vo.BbsVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -103,10 +104,44 @@
             	<tr>
                 	<td colspan="4">
                     	<ol class="paging">
-							<li><a href="#">이전으로</a></li>
-							<li class="now">1</li>     
-							<li><a href="#">2</a></li>
-							<li><a href="#">다음으로</a></li>
+					<%
+						// 페이징을 위해 request에 page라는이름으로 저장한 객체를 얻어낸다.
+						Object p_obj = request.getAttribute("page");
+						Paging pvo = null;
+						if(p_obj != null){
+							pvo = (Paging) p_obj;
+							if(pvo.getStartPage() < pvo.getPagePerBlock()){
+					%>
+							<li class="disable">&lt;</li>
+					<%			
+							} else {
+					%>
+							<li><a href="Controller?type=list&bname=bbs&cPage=<%=pvo.getEndPage()-pvo.getPagePerBlock()%>">&lt;</a></li>
+					<%
+							}
+							for(int i=pvo.getStartPage(); i<=pvo.getEndPage(); i++ ){
+								
+								if(pvo.getNowPage()==i){
+					%>
+									<li class="now"><%=i %></li> 
+					<%				
+								} else {
+					%>
+									<li><a href="Controller?type=list&bname=bbs&cPage=<%=i%>"><%=i %></a></li>
+					<%				
+								}
+							} // for문 끝
+							if(pvo.getEndPage() >= pvo.getTotalPage()){
+					%>
+							<li class="disable">&gt;</li>
+					<%
+							} else{
+					%>
+							<li><a href="Controller?type=list&bname=bbs&cPage=<%=pvo.getStartPage()+pvo.getPagePerBlock()%>">&gt;</a></li>
+					<%
+							}
+						}
+					%>
 						</ol>
               		</td>
 					<td>

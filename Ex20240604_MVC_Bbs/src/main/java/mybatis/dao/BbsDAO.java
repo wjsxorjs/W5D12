@@ -10,6 +10,19 @@ import mybatis.vo.BbsVO;
 
 public class BbsDAO {
 
+	public static int getCount(String bname) {
+		int count = 0;
+
+		SqlSession ss = FactoryService.getFactory().openSession();
+		
+		count = ss.selectOne("bbs.count",bname);
+
+		ss.close();
+		
+		
+		return count;
+	}
+	
 	public static BbsVO[] getList(String bname, int begin, int end) {
 		BbsVO[] b_ar = null;
 		
@@ -28,11 +41,12 @@ public class BbsDAO {
 			
 			b_list.toArray(b_ar);
 		}
+		ss.close();
 		
 		return b_ar;
 	}
 	
-	public static void add(String title, String writer, String content, String fname, String oname, String ip, String b_name) {
+	public static int add(String title, String writer, String content, String fname, String oname, String ip, String b_name) {
 		
 		SqlSession ss = FactoryService.getFactory().openSession();
 		
@@ -53,10 +67,10 @@ public class BbsDAO {
 		} else {
 			ss.rollback();
 		}
+		
 		ss.close();
 		
-		
-		return;
+		return chk;
 		
 	}
 	
